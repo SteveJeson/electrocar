@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.electrocar.mapper.GPSEntityMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.GPSEntity">
+    <id column="msg_id" jdbcType="CHAR" property="msgId" />
+    <result column="device_id" jdbcType="CHAR" property="deviceId" />
+    <result column="alarm_status" jdbcType="CHAR" property="alarmStatus" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="speed" jdbcType="DOUBLE" property="speed" />
+    <result column="direction" jdbcType="DOUBLE" property="direction" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="mileage" jdbcType="DOUBLE" property="mileage" />
+    <result column="oil" jdbcType="DOUBLE" property="oil" />
+    <result column="speed2" jdbcType="DOUBLE" property="speed2" />
+    <result column="signal_status" jdbcType="CHAR" property="signalStatus" />
+    <result column="io_status" jdbcType="CHAR" property="ioStatus" />
+    <result column="analog" jdbcType="CHAR" property="analog" />
+    <result column="network_signal" jdbcType="INTEGER" property="networkSignal" />
+    <result column="satellite_number" jdbcType="INTEGER" property="satelliteNumber" />
+    <result column="db_time" jdbcType="TIMESTAMP" property="dbTime" />
+    <result column="vendor" jdbcType="INTEGER" property="vendor" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_gps
+    where msg_id = #{msgId,jdbcType=CHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.GPSEntity">
+    update t_gps
+    set device_id = #{deviceId,jdbcType=CHAR},
+      alarm_status = #{alarmStatus,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      speed = #{speed,jdbcType=DOUBLE},
+      direction = #{direction,jdbcType=DOUBLE},
+      time = #{time,jdbcType=TIMESTAMP},
+      mileage = #{mileage,jdbcType=DOUBLE},
+      oil = #{oil,jdbcType=DOUBLE},
+      speed2 = #{speed2,jdbcType=DOUBLE},
+      signal_status = #{signalStatus,jdbcType=CHAR},
+      io_status = #{ioStatus,jdbcType=CHAR},
+      analog = #{analog,jdbcType=CHAR},
+      network_signal = #{networkSignal,jdbcType=INTEGER},
+      satellite_number = #{satelliteNumber,jdbcType=INTEGER},
+      db_time = #{dbTime,jdbcType=TIMESTAMP},
+      vendor = #{vendor,jdbcType=INTEGER}
+    where msg_id = #{msgId,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select msg_id, device_id, alarm_status, status, longitude, latitude, height, speed,
+    direction, time, mileage, oil, speed2, signal_status, io_status, analog, network_signal,
+    satellite_number, db_time, vendor
+    from t_gps
+    where msg_id = #{msgId,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select msg_id, device_id, alarm_status, status, longitude, latitude, height, speed,
+    direction, time, mileage, oil, speed2, signal_status, io_status, analog, network_signal,
+    satellite_number, db_time, vendor
+    from t_gps
+  </select>
+  <insert id="insert" parameterType="com.zdzc.electrocar.entity.GPSEntity">
+    insert into t_gps (msg_id, device_id, alarm_status,
+      status, longitude, latitude,
+      height, speed, direction,
+      time, mileage, oil,
+      speed2, signal_status, io_status,
+      analog, network_signal, satellite_number,
+      db_time, vendor)
+    values (#{msgId,jdbcType=CHAR}, #{deviceId,jdbcType=CHAR}, #{alarmStatus,jdbcType=CHAR},
+      #{status,jdbcType=CHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE},
+      #{height,jdbcType=DOUBLE}, #{speed,jdbcType=DOUBLE}, #{direction,jdbcType=DOUBLE},
+      #{time,jdbcType=TIMESTAMP}, #{mileage,jdbcType=DOUBLE}, #{oil,jdbcType=DOUBLE},
+      #{speed2,jdbcType=DOUBLE}, #{signalStatus,jdbcType=CHAR}, #{ioStatus,jdbcType=CHAR},
+      #{analog,jdbcType=CHAR}, #{networkSignal,jdbcType=INTEGER}, #{satelliteNumber,jdbcType=INTEGER},
+      #{dbTime,jdbcType=TIMESTAMP}, #{vendor,jdbcType=INTEGER})
+  </insert>
+</mapper>
