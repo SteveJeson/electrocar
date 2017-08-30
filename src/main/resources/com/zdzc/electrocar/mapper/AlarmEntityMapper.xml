@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zdzc.electrocar.mapper.AlarmEntityMapper" >
-  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.AlarmEntity" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
-    <result column="alarm_status" property="alarmStatus" jdbcType="VARCHAR" />
-    <result column="alarm_handle" property="alarmHandle" jdbcType="INTEGER" />
-    <result column="vehicle_status" property="vehicleStatus" jdbcType="VARCHAR" />
-    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
-    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
-    <result column="height" property="height" jdbcType="DOUBLE" />
-    <result column="speed" property="speed" jdbcType="DOUBLE" />
-    <result column="direction" property="direction" jdbcType="DOUBLE" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="milestone" property="milestone" jdbcType="DOUBLE" />
-    <result column="oil" property="oil" jdbcType="DOUBLE" />
-    <result column="speed2" property="speed2" jdbcType="DOUBLE" />
-    <result column="signal_status" property="signalStatus" jdbcType="VARCHAR" />
-    <result column="io_status" property="ioStatus" jdbcType="VARCHAR" />
-    <result column="analog" property="analog" jdbcType="VARCHAR" />
-    <result column="wiff" property="wiff" jdbcType="INTEGER" />
-    <result column="satellite_num" property="satelliteNum" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="vendor" property="vendor" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.electrocar.mapper.AlarmEntityMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.AlarmEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="alarm_status" jdbcType="VARCHAR" property="alarmStatus" />
+    <result column="alarm_handle" jdbcType="INTEGER" property="alarmHandle" />
+    <result column="vehicle_status" jdbcType="VARCHAR" property="vehicleStatus" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="speed" jdbcType="DOUBLE" property="speed" />
+    <result column="direction" jdbcType="DOUBLE" property="direction" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="milestone" jdbcType="DOUBLE" property="milestone" />
+    <result column="oil" jdbcType="DOUBLE" property="oil" />
+    <result column="speed2" jdbcType="DOUBLE" property="speed2" />
+    <result column="signal_status" jdbcType="VARCHAR" property="signalStatus" />
+    <result column="io_status" jdbcType="VARCHAR" property="ioStatus" />
+    <result column="analog" jdbcType="VARCHAR" property="analog" />
+    <result column="wiff" jdbcType="INTEGER" property="wiff" />
+    <result column="satellite_num" jdbcType="INTEGER" property="satelliteNum" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="vendor" jdbcType="INTEGER" property="vendor" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_gps_alarm
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zdzc.electrocar.entity.AlarmEntity" >
+  <insert id="insert" parameterType="com.zdzc.electrocar.entity.AlarmEntity">
     insert into t_gps_alarm (id, device_id, alarm_status, 
       alarm_handle, vehicle_status, longitude, 
       latitude, height, speed, 
@@ -46,7 +46,7 @@
       #{satelliteNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{vendor,jdbcType=INTEGER}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.AlarmEntity" >
+  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.AlarmEntity">
     update t_gps_alarm
     set device_id = #{deviceId,jdbcType=VARCHAR},
       alarm_status = #{alarmStatus,jdbcType=VARCHAR},
@@ -70,14 +70,96 @@
       vendor = #{vendor,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select id, device_id, alarm_status, alarm_handle, vehicle_status, longitude, latitude, 
     height, speed, direction, time, milestone, oil, speed2, signal_status, io_status, 
     analog, wiff, satellite_num, create_time, vendor
     from t_gps_alarm
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, device_id, alarm_status, alarm_handle, vehicle_status, longitude, latitude, 
+    height, speed, direction, time, milestone, oil, speed2, signal_status, io_status, 
+    analog, wiff, satellite_num, create_time, vendor
+    from t_gps_alarm
+  </select>
+  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.AlarmEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="alarm_status" jdbcType="VARCHAR" property="alarmStatus" />
+    <result column="alarm_handle" jdbcType="INTEGER" property="alarmHandle" />
+    <result column="vehicle_status" jdbcType="VARCHAR" property="vehicleStatus" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="speed" jdbcType="DOUBLE" property="speed" />
+    <result column="direction" jdbcType="DOUBLE" property="direction" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="milestone" jdbcType="DOUBLE" property="milestone" />
+    <result column="oil" jdbcType="DOUBLE" property="oil" />
+    <result column="speed2" jdbcType="DOUBLE" property="speed2" />
+    <result column="signal_status" jdbcType="VARCHAR" property="signalStatus" />
+    <result column="io_status" jdbcType="VARCHAR" property="ioStatus" />
+    <result column="analog" jdbcType="VARCHAR" property="analog" />
+    <result column="wiff" jdbcType="INTEGER" property="wiff" />
+    <result column="satellite_num" jdbcType="INTEGER" property="satelliteNum" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="vendor" jdbcType="INTEGER" property="vendor" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_gps_alarm
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zdzc.electrocar.entity.AlarmEntity">
+    insert into t_gps_alarm (id, device_id, alarm_status, 
+      alarm_handle, vehicle_status, longitude, 
+      latitude, height, speed, 
+      direction, time, milestone, 
+      oil, speed2, signal_status, 
+      io_status, analog, wiff, 
+      satellite_num, create_time, vendor
+      )
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=VARCHAR}, 
+      #{alarmHandle,jdbcType=INTEGER}, #{vehicleStatus,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, #{speed,jdbcType=DOUBLE}, 
+      #{direction,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, #{milestone,jdbcType=DOUBLE}, 
+      #{oil,jdbcType=DOUBLE}, #{speed2,jdbcType=DOUBLE}, #{signalStatus,jdbcType=VARCHAR}, 
+      #{ioStatus,jdbcType=VARCHAR}, #{analog,jdbcType=VARCHAR}, #{wiff,jdbcType=INTEGER}, 
+      #{satelliteNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{vendor,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.AlarmEntity">
+    update t_gps_alarm
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      alarm_status = #{alarmStatus,jdbcType=VARCHAR},
+      alarm_handle = #{alarmHandle,jdbcType=INTEGER},
+      vehicle_status = #{vehicleStatus,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      speed = #{speed,jdbcType=DOUBLE},
+      direction = #{direction,jdbcType=DOUBLE},
+      time = #{time,jdbcType=TIMESTAMP},
+      milestone = #{milestone,jdbcType=DOUBLE},
+      oil = #{oil,jdbcType=DOUBLE},
+      speed2 = #{speed2,jdbcType=DOUBLE},
+      signal_status = #{signalStatus,jdbcType=VARCHAR},
+      io_status = #{ioStatus,jdbcType=VARCHAR},
+      analog = #{analog,jdbcType=VARCHAR},
+      wiff = #{wiff,jdbcType=INTEGER},
+      satellite_num = #{satelliteNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      vendor = #{vendor,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, device_id, alarm_status, alarm_handle, vehicle_status, longitude, latitude, 
+    height, speed, direction, time, milestone, oil, speed2, signal_status, io_status, 
+    analog, wiff, satellite_num, create_time, vendor
+    from t_gps_alarm
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
     select id, device_id, alarm_status, alarm_handle, vehicle_status, longitude, latitude, 
     height, speed, direction, time, milestone, oil, speed2, signal_status, io_status, 
     analog, wiff, satellite_num, create_time, vendor

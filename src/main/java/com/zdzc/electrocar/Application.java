@@ -15,7 +15,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableScheduling
 @MapperScan(basePackages = "com.zdzc.electrocar.mapper")
-public class ElectrocarApplication extends WebMvcConfigurerAdapter {
+public class Application extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -35,6 +35,6 @@ public class ElectrocarApplication extends WebMvcConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ElectrocarApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

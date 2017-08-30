@@ -82,4 +82,11 @@
     wiff, satellite_num, create_time, vendor
     from t_gps_snapshoot
   </select>
+  <select id="selectLatestGPSInfoByDeviceId" resultType="GPSNapshotEntity" parameterType="java.lang.String">
+    select id, device_id, alarm_status, vehicle_status, longitude, latitude, height,
+    speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog,
+    wiff, satellite_num, create_time, vendor
+    from t_gps_snapshoot
+    where device_id = #{deviceId}
+  </select>
 </mapper>

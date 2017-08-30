@@ -1,0 +1,5 @@
+1、slf4j日志：关闭系统debug，指定debug目录
+
+2、generator生成目录，mapper xml名称、注释
+
+3、返回json通用对象封装
