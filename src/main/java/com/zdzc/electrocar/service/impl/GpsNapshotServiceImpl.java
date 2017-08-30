@@ -15,6 +15,11 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
     @Autowired
     private GPSNapshotEntityMapper mapper;
 
+    /**
+     * 获取设备最新坐标信息
+     * @param deviceId
+     * @return GPSNapshotEntity
+     */
     @Override
     public GPSNapshotEntity getLatestGPSInfoByDeviceId(String deviceId) {
         return this.mapper.selectLatestGPSInfoByDeviceId(deviceId);

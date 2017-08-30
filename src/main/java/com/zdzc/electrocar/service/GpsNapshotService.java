@@ -7,9 +7,5 @@ import com.zdzc.electrocar.entity.GPSNapshotEntity;
  */
 public interface GpsNapshotService {
 
-    /**
-     * @param deviceId
-     * @return
-     */
      GPSNapshotEntity getLatestGPSInfoByDeviceId(String deviceId);
 }
