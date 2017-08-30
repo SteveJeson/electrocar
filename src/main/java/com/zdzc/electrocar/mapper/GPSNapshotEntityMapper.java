@@ -15,4 +15,6 @@ public interface GPSNapshotEntityMapper {
     int updateByPrimaryKey(GPSNapshotEntity record);
 
     GPSNapshotEntity selectLatestGPSInfoByDeviceId(String deviceId);
+
+    List<GPSNapshotEntity> selectLatestGPSListByDeviceId(String deviceId);
 }

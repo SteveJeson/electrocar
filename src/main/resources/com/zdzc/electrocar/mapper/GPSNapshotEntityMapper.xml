@@ -23,66 +23,16 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="vendor" property="vendor" jdbcType="INTEGER" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_gps_snapshoot
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.zdzc.electrocar.entity.GPSNapshotEntity" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into t_gps_snapshoot (device_id, alarm_status, vehicle_status, 
-      longitude, latitude, height, 
-      speed, direction, time, 
-      milestone, oil, speed2, 
-      signal_status, io_status, analog, 
-      wiff, satellite_num, create_time, 
-      vendor)
-    values (#{deviceId,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=VARCHAR}, #{vehicleStatus,jdbcType=VARCHAR}, 
-      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, 
-      #{speed,jdbcType=DOUBLE}, #{direction,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
-      #{milestone,jdbcType=DOUBLE}, #{oil,jdbcType=DOUBLE}, #{speed2,jdbcType=DOUBLE}, 
-      #{signalStatus,jdbcType=VARCHAR}, #{ioStatus,jdbcType=VARCHAR}, #{analog,jdbcType=VARCHAR}, 
-      #{wiff,jdbcType=INTEGER}, #{satelliteNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{vendor,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.GPSNapshotEntity" >
-    update t_gps_snapshoot
-    set device_id = #{deviceId,jdbcType=VARCHAR},
-      alarm_status = #{alarmStatus,jdbcType=VARCHAR},
-      vehicle_status = #{vehicleStatus,jdbcType=VARCHAR},
-      longitude = #{longitude,jdbcType=DOUBLE},
-      latitude = #{latitude,jdbcType=DOUBLE},
-      height = #{height,jdbcType=DOUBLE},
-      speed = #{speed,jdbcType=DOUBLE},
-      direction = #{direction,jdbcType=DOUBLE},
-      time = #{time,jdbcType=TIMESTAMP},
-      milestone = #{milestone,jdbcType=DOUBLE},
-      oil = #{oil,jdbcType=DOUBLE},
-      speed2 = #{speed2,jdbcType=DOUBLE},
-      signal_status = #{signalStatus,jdbcType=VARCHAR},
-      io_status = #{ioStatus,jdbcType=VARCHAR},
-      analog = #{analog,jdbcType=VARCHAR},
-      wiff = #{wiff,jdbcType=INTEGER},
-      satellite_num = #{satelliteNum,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      vendor = #{vendor,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select id, device_id, alarm_status, vehicle_status, longitude, latitude, height, 
-    speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog, 
-    wiff, satellite_num, create_time, vendor
-    from t_gps_snapshoot
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, device_id, alarm_status, vehicle_status, longitude, latitude, height, 
-    speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog, 
-    wiff, satellite_num, create_time, vendor
-    from t_gps_snapshoot
-  </select>
+
+
   <select id="selectLatestGPSInfoByDeviceId" resultType="GPSNapshotEntity" parameterType="java.lang.String">
+    select id, device_id, alarm_status, vehicle_status, longitude, latitude, height,
+    speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog,
+    wiff, satellite_num, create_time, vendor
+    from t_gps_snapshoot
+    where device_id = #{deviceId}
+  </select>
+  <select id="selectLatestGPSListByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.String">
     select id, device_id, alarm_status, vehicle_status, longitude, latitude, height,
     speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog,
     wiff, satellite_num, create_time, vendor

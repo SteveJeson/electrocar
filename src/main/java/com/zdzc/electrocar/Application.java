@@ -14,7 +14,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableScheduling
-@MapperScan(basePackages = "com.zdzc.electrocar.mapper")
+@MapperScan(basePackages = {"com.zdzc.electrocar.mapper","org.dozer"})
 public class Application extends WebMvcConfigurerAdapter {
 
 	@Override

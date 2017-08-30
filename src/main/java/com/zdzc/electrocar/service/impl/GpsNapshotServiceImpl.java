@@ -6,6 +6,8 @@ import com.zdzc.electrocar.service.GpsNapshotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by liuw on 2017/8/29.
  */
@@ -23,5 +25,10 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
     @Override
     public GPSNapshotEntity getLatestGPSInfoByDeviceId(String deviceId) {
         return this.mapper.selectLatestGPSInfoByDeviceId(deviceId);
+    }
+
+    @Override
+    public List<GPSNapshotEntity> getLatestGPSInfoListByDeviceId(String deviceId) {
+        return this.mapper.selectLatestGPSListByDeviceId(deviceId);
     }
 }
