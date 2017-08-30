@@ -10,4 +10,6 @@ import java.util.List;
 public interface GpsService {
 
     public List<GPSEntity> findAll();
+
+    public GPSEntity findById(Long id);
 }

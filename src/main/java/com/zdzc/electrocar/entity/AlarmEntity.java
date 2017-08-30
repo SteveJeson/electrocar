@@ -2,12 +2,14 @@ package com.zdzc.electrocar.entity;
 
 import java.util.Date;
 
-public class GPSEntity {
+public class AlarmEntity {
     private Long id;
 
     private String deviceId;
 
     private String alarmStatus;
+
+    private Integer alarmHandle;
 
     private String vehicleStatus;
 
@@ -65,6 +67,14 @@ public class GPSEntity {
 
     public void setAlarmStatus(String alarmStatus) {
         this.alarmStatus = alarmStatus == null ? null : alarmStatus.trim();
+    }
+
+    public Integer getAlarmHandle() {
+        return alarmHandle;
+    }
+
+    public void setAlarmHandle(Integer alarmHandle) {
+        this.alarmHandle = alarmHandle;
     }
 
     public String getVehicleStatus() {

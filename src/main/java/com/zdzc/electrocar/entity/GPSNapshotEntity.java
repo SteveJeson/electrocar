@@ -2,7 +2,7 @@ package com.zdzc.electrocar.entity;
 
 import java.util.Date;
 
-public class GPSEntity {
+public class GPSNapshotEntity {
     private Long id;
 
     private String deviceId;

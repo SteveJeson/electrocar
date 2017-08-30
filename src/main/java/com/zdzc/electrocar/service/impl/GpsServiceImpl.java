@@ -22,4 +22,11 @@ public class GpsServiceImpl implements GpsService {
     public List<GPSEntity> findAll() {
         return this.mapper.selectAll();
     }
+
+    @Override
+    public GPSEntity findById(Long id) {
+        return this.mapper.selectByPrimaryKey(id);
+    }
+
+
 }

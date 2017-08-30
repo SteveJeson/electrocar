@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zdzc.electrocar.mapper.GPSEntityMapper" >
-  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.GPSEntity" >
+<mapper namespace="com.zdzc.electrocar.mapper.GPSNapshotEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.GPSNapshotEntity" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
     <result column="alarm_status" property="alarmStatus" jdbcType="VARCHAR" />
@@ -24,27 +24,30 @@
     <result column="vendor" property="vendor" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from t_gps
+    delete from t_gps_snapshoot
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zdzc.electrocar.entity.GPSEntity" >
-    insert into t_gps (id, device_id, alarm_status, 
-      vehicle_status, longitude, latitude, 
-      height, speed, direction, 
-      time, milestone, oil, 
-      speed2, signal_status, io_status, 
-      analog, wiff, satellite_num, 
-      create_time, vendor)
-    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=VARCHAR}, 
-      #{vehicleStatus,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
-      #{height,jdbcType=DOUBLE}, #{speed,jdbcType=DOUBLE}, #{direction,jdbcType=DOUBLE}, 
-      #{time,jdbcType=TIMESTAMP}, #{milestone,jdbcType=DOUBLE}, #{oil,jdbcType=DOUBLE}, 
-      #{speed2,jdbcType=DOUBLE}, #{signalStatus,jdbcType=VARCHAR}, #{ioStatus,jdbcType=VARCHAR}, 
-      #{analog,jdbcType=VARCHAR}, #{wiff,jdbcType=INTEGER}, #{satelliteNum,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{vendor,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.zdzc.electrocar.entity.GPSNapshotEntity" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_gps_snapshoot (device_id, alarm_status, vehicle_status, 
+      longitude, latitude, height, 
+      speed, direction, time, 
+      milestone, oil, speed2, 
+      signal_status, io_status, analog, 
+      wiff, satellite_num, create_time, 
+      vendor)
+    values (#{deviceId,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=VARCHAR}, #{vehicleStatus,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, 
+      #{speed,jdbcType=DOUBLE}, #{direction,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
+      #{milestone,jdbcType=DOUBLE}, #{oil,jdbcType=DOUBLE}, #{speed2,jdbcType=DOUBLE}, 
+      #{signalStatus,jdbcType=VARCHAR}, #{ioStatus,jdbcType=VARCHAR}, #{analog,jdbcType=VARCHAR}, 
+      #{wiff,jdbcType=INTEGER}, #{satelliteNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{vendor,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.GPSEntity" >
-    update t_gps
+  <update id="updateByPrimaryKey" parameterType="com.zdzc.electrocar.entity.GPSNapshotEntity" >
+    update t_gps_snapshoot
     set device_id = #{deviceId,jdbcType=VARCHAR},
       alarm_status = #{alarmStatus,jdbcType=VARCHAR},
       vehicle_status = #{vehicleStatus,jdbcType=VARCHAR},
@@ -70,13 +73,13 @@
     select id, device_id, alarm_status, vehicle_status, longitude, latitude, height, 
     speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog, 
     wiff, satellite_num, create_time, vendor
-    from t_gps
+    from t_gps_snapshoot
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, device_id, alarm_status, vehicle_status, longitude, latitude, height, 
     speed, direction, time, milestone, oil, speed2, signal_status, io_status, analog, 
     wiff, satellite_num, create_time, vendor
-    from t_gps
+    from t_gps_snapshoot
   </select>
 </mapper>

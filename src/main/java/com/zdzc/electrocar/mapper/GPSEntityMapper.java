@@ -4,11 +4,11 @@ import com.zdzc.electrocar.entity.GPSEntity;
 import java.util.List;
 
 public interface GPSEntityMapper {
-    int deleteByPrimaryKey(String msgId);
+    int deleteByPrimaryKey(Long id);
 
     int insert(GPSEntity record);
 
-    GPSEntity selectByPrimaryKey(String msgId);
+    GPSEntity selectByPrimaryKey(Long id);
 
     List<GPSEntity> selectAll();
 
