@@ -21,7 +21,7 @@ public class Result implements Serializable{
      * 状态码
      */
 
-    private StatusCode statusCode;
+    private int statusCode;
 
     public Result() {
     }
@@ -42,13 +42,11 @@ public class Result implements Serializable{
         this.message = message;
     }
 
-    public StatusCode getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(StatusCode statusCode) {
+    public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
-
-
 }

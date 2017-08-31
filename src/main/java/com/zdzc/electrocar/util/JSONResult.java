@@ -29,11 +29,11 @@ public class JSONResult<T> extends Result {
      * @param message
      * @param success
      */
-    public JSONResult(T data, boolean success, StatusCode statusCode, String message) {
-        this.data = data;
+    public JSONResult(boolean success, int statusCode, String message, T data) {
         super.setSuccess(success);
         super.setStatusCode(statusCode);
         super.setMessage(message);
+        this.data = data;
     }
 
     /**

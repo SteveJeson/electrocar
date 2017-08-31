@@ -1,5 +1,6 @@
 package com.zdzc.electrocar.service;
 
+import com.zdzc.electrocar.dto.GPSNapshotDto;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 
 import java.util.List;
@@ -11,5 +12,7 @@ public interface GpsNapshotService {
 
      GPSNapshotEntity getLatestGPSInfoByDeviceId(String deviceId);
 
-     List<GPSNapshotEntity> getLatestGPSInfoListByDeviceId(String deviceId);
+     GPSNapshotEntity getLatestGPSInfoListByDeviceId(String deviceId);
+
+     GPSNapshotDto copyGPSEntityToDTO(GPSNapshotEntity entity);
 }

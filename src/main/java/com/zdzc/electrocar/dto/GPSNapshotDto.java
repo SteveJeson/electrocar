@@ -1,7 +1,5 @@
 package com.zdzc.electrocar.dto;
 
-import org.dozer.Mapping;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,29 +12,27 @@ public class GPSNapshotDto implements Serializable{
     /**
      * 经度
      */
-    @Mapping("longitude")
     private Double lng;
     /**
      * 纬度
      */
-    @Mapping("latitude")
     private Double lat;
     /**
      * 经度(高德)
      */
-//    private Double olng;
+    private Double olng;
     /**
      * 纬度(高德)
      */
-//    private Double olat;
+    private Double olat;
     /**
      * 经度(百度)
      */
-//    private Double blng;
+    private Double blng;
     /**
      * 纬度(百度)
      */
-//    private Double blat;
+    private Double blat;
     /**
      * 采集时间
      */
@@ -48,11 +44,28 @@ public class GPSNapshotDto implements Serializable{
     /**
      * 在线状态
      */
-//    private String online;
+    private String online;
     /**
      * 里程
      */
     private Double milestone;
+
+    /**
+     * 电量
+     */
+    private double power;
+    /**
+     * 充电状态
+     */
+    private String powerStatus;
+    /**
+     * 设防状态
+     */
+    private byte fortifyStatus;
+    /**
+     * Acc状态
+     */
+    private byte accStatus;
 
     public String getDeviceId() {
         return deviceId;
@@ -120,36 +133,59 @@ public class GPSNapshotDto implements Serializable{
         this.powerStatus = powerStatus;
     }
 
-    public String getFortifyStatus() {
+    public byte getFortifyStatus() {
         return fortifyStatus;
     }
 
-    public void setFortifyStatus(String fortifyStatus) {
+    public void setFortifyStatus(byte fortifyStatus) {
         this.fortifyStatus = fortifyStatus;
     }
 
-    public String getAccStatus() {
+    public byte getAccStatus() {
         return accStatus;
     }
 
-    public void setAccStatus(String accStatus) {
+    public void setAccStatus(byte accStatus) {
         this.accStatus = accStatus;
     }
 
-    /**
-     * 电量
-     */
-    private double power;
-    /**
-     * 充电状态
-     */
-    private String powerStatus;
-    /**
-     * 设防状态
-     */
-    private String fortifyStatus;
-    /**
-     * Acc状态
-     */
-    private String accStatus;
+    public Double getOlng() {
+        return olng;
+    }
+
+    public void setOlng(Double olng) {
+        this.olng = olng;
+    }
+
+    public Double getOlat() {
+        return olat;
+    }
+
+    public void setOlat(Double olat) {
+        this.olat = olat;
+    }
+
+    public Double getBlng() {
+        return blng;
+    }
+
+    public void setBlng(Double blng) {
+        this.blng = blng;
+    }
+
+    public Double getBlat() {
+        return blat;
+    }
+
+    public void setBlat(Double blat) {
+        this.blat = blat;
+    }
+
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
+    }
 }

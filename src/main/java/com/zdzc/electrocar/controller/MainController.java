@@ -1,5 +1,6 @@
 package com.zdzc.electrocar.controller;
 
+import com.zdzc.electrocar.common.Authentication;
 import com.zdzc.electrocar.dto.GPSNapshotDto;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 import com.zdzc.electrocar.service.GpsNapshotService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,12 +33,22 @@ public class MainController {
 
     private static Logger log = LoggerFactory.getLogger(MainController.class);
 
-    @RequestMapping("/GPSInfo/{deviceId}")
-    public JSONResult getLatestGPSInfoByDeviceId(@PathVariable("deviceId") String deviceId) {
-        List<GPSNapshotEntity> entityList =
-                gpsNapshotService.getLatestGPSInfoListByDeviceId(deviceId);
-        return new JSONResult(entityList,true,StatusCode.OK.get(1),"OK");
-//        return new JSONResult(entityList.stream().map(form->mapper.map(form,GPSNapshotDto.class)),true, StatusCode.OK.get(1),"OK");
+    @RequestMapping("/GPSInfo/{deviceId}/{accessToken}")
+    public JSONResult getLatestGPSInfoByDeviceId(@PathVariable("deviceId") String deviceId,@PathVariable("accessToken")String token,
+                                                 HttpServletRequest request) {
+        //TODO token校验通过才进行API调用
+        if (Authentication.validateToken(token)) {
+            GPSNapshotEntity entity =
+                    gpsNapshotService.getLatestGPSInfoListByDeviceId(deviceId);
+            if (entity != null) {
+                return new JSONResult(true,StatusCode.OK,"获取最新坐标信息成功",gpsNapshotService.copyGPSEntityToDTO(entity));
+            } else {
+                return new JSONResult(true,StatusCode.EMPTY,"未获取到最新坐标信息",null);
+            }
+        } else{
+            return new JSONResult(false,StatusCode.ACCESS_DENIED,"访问被拒绝",null);
+        }
+
     }
 
 }
