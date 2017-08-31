@@ -1,5 +1,6 @@
 package com.zdzc.electrocar.service.impl;
 
+import com.zdzc.electrocar.common.CommonBusiness;
 import com.zdzc.electrocar.dto.GPSNapshotDto;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 import com.zdzc.electrocar.mapper.GPSNapshotEntityMapper;
@@ -66,20 +67,11 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
             dto.setMilestone(entity.getMilestone());
             //TODO 设防状态先默认设为1 1:设防 0:撤防
             dto.setFortifyStatus((byte)1);
-            dto.setAccStatus(getAccStatus(entity.getAlarmStatus()));
+            dto.setAccStatus(CommonBusiness.getAccStatus(entity.getAlarmStatus()));
             return dto;
         }
         return null;
     }
 
-    /**
-     * 通过报警信息获取ACC状态 1：开启 0：关闭
-     * @param alarmStatus
-     * @return
-     */
-    private byte getAccStatus(int alarmStatus) {
-        String binStr = ByteUtil.get32BitBinStrFromInt(alarmStatus);
-        int accStatus = Integer.valueOf(binStr.substring(0,1));
-        return (byte)accStatus;
-    }
+
 }

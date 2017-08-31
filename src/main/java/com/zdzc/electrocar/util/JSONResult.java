@@ -1,10 +1,12 @@
 package com.zdzc.electrocar.util;
 
+import java.io.Serializable;
+
 /**
  * Created by liuw on 2017/8/30.
  * JSONResult : Response JSONResult for RESTful,封装返回JSON格式的数据
  */
-public class JSONResult<T> extends Result {
+public class JSONResult<T> extends Result implements Serializable{
 
     private static final long serialVersionUID = -8101932431986977359L;
 

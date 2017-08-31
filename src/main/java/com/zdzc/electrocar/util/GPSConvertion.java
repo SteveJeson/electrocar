@@ -6,12 +6,13 @@ package com.zdzc.electrocar.util;
  * 输出高德地图坐标，单位度，数据类型double[]，参数一为lng,参数二为lat
  */
 public class GPSConvertion {
-    /*
-         * GPS坐标转换为高德地图坐标
-         * 输入GPS坐标，单位度，数据类型double，参数一为Lat,参数二为Lng
-         * 输出高德地图坐标，单位度，数据类型double[]，参数一为Lat,参数二为Lng
-         *
-         * */
+
+    /**
+     * GPS坐标转换为高德地图坐标
+     * 输入GPS坐标，单位度，数据类型double，参数一为Lat,参数二为Lng
+     * 输出高德地图坐标，单位度，数据类型double[]，参数一为Lat,参数二为Lng
+     */
+
     private static final double pi = Math.PI;
     private static final double a = 6378245.0;
     private static final double ee = 0.00669342162296594323;
