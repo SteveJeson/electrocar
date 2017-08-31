@@ -3,6 +3,9 @@ package com.zdzc.electrocar.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * dto类 只返回前端需要的字段
+ */
 public class GPSNapshotDto implements Serializable{
 
     /**

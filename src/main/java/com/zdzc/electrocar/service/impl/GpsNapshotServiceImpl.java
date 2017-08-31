@@ -25,15 +25,10 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
     private GPSNapshotEntityMapper mapper;
 
     /**
-     * 获取设备最新坐标信息
-     * @param deviceId
+     * 获取某个设备最新坐标信息
+     * @param deviceId  终端设备号
      * @return GPSNapshotEntity
      */
-    @Override
-    public GPSNapshotEntity getLatestGPSInfoByDeviceId(String deviceId) {
-        return this.mapper.selectLatestGPSInfoByDeviceId(deviceId);
-    }
-
     @Override
     public GPSNapshotEntity getLatestGPSInfoListByDeviceId(String deviceId) {
         List<GPSNapshotEntity> entities = this.mapper.selectLatestGPSListByDeviceId(deviceId);
@@ -43,6 +38,11 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
         return null;
     }
 
+    /**
+     * 将普通实体类属性信息复制给特定dto类
+     * @param entity
+     * @return GPSNapshotDto
+     */
     @Override
     public GPSNapshotDto copyGPSEntityToDTO(GPSNapshotEntity entity) {
         if (entity != null) {
