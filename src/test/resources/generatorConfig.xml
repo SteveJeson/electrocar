@@ -19,7 +19,9 @@
 
         <!--关闭注释 -->
         <commentGenerator>
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"></property>
+            <property name="addRemarkComments" value="true"></property>
         </commentGenerator>
 
         <!--数据库连接信息 -->
@@ -66,21 +68,21 @@
             <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;-->
         <!--</table>-->
 
-        <!--<table tableName="t_gps_alarm" domainObjectName="AlarmEntity">
-            <property name="useActualColumnNames" value="false"/>
-            &lt;!&ndash;mysql 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>-->
-
-        <table tableName="t_gps" domainObjectName="GPSEntity">
+        <table tableName="t_gps_alarm" domainObjectName="AlarmEntity">
             <property name="useActualColumnNames" value="false"/>
             <!--mysql 配置-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
+
+        <!--<table tableName="t_gps" domainObjectName="GPSEntity">
+            <property name="useActualColumnNames" value="false"/>
+            &lt;!&ndash;mysql 配置&ndash;&gt;
+            &lt;!&ndash;<generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;
+            &lt;!&ndash;oracle 配置&ndash;&gt;
+            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
+        </table>-->
 
     </context>
 </generatorConfiguration>

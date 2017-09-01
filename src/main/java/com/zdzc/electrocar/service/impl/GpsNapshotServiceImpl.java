@@ -44,21 +44,18 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
      * @return GPSNapshotDto
      */
     @Override
-    public GPSNapshotDto copyGPSEntityToDTO(GPSNapshotEntity entity) {
+    public GPSNapshotDto copyGPSEntityToDto(GPSNapshotEntity entity) {
         if (entity != null) {
             GPSNapshotDto dto = new GPSNapshotDto();
             dto.setDeviceId(entity.getDeviceId());//终端设备号
-            dto.setLng(entity.getLongitude());//经度
-            dto.setLat(entity.getLatitude());//纬度
+            double lng = entity.getLongitude();
+            double lat = entity.getLatitude();
+            dto.setLng(lng);//经度
+            dto.setLat(lat);//纬度
             //转换成高德经纬度
-            if (entity.getLongitude() != 0 || entity.getLatitude() != 0) {
-                double[] gps = GPSConvertion.transLatLng(entity.getLongitude(),entity.getLatitude());
-                dto.setOlng(gps[0]);//高德经度
-                dto.setOlat(gps[1]);//高德纬度
-            } else {
-                dto.setOlng(entity.getLongitude());
-                dto.setOlat(entity.getLatitude());
-            }
+            double[] gps = CommonBusiness.getGaodeGPS(lng, lat);
+            dto.setOlng(lng!=0?gps[0]:lng);
+            dto.setOlat(lat!=0?gps[1]:lat);
 
             dto.setTime(entity.getTime());//采集时间
             dto.setSpeed(entity.getSpeed());//速度

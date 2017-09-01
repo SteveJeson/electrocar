@@ -51,7 +51,7 @@ public class GPSController {
             GPSNapshotEntity entity =
                     gpsNapshotService.getLatestGPSInfoListByDeviceId(deviceId);
             if (entity != null) {
-                return new JSONResult(true,StatusCode.OK,"获取信息成功",gpsNapshotService.copyGPSEntityToDTO(entity));
+                return new JSONResult(true,StatusCode.OK,"获取信息成功",gpsNapshotService.copyGPSEntityToDto(entity));
             } else {
                 return new JSONResult(true,StatusCode.EMPTY,"未获取到相关信息",null);
             }
@@ -71,7 +71,6 @@ public class GPSController {
         String deviceId = request.getParameter("deviceId");
         String startTime = request.getParameter("beginTime");
         String endTime = request.getParameter("endTime");
-        log.debug("=============正在获取设备指定时间内坐标信息======={}",endTime);
         if (Authentication.validateToken(token)) {
             List<GPSEntity> entities =  gpsService.getGPSInfoForPeriod(deviceId, startTime, endTime);
             if (entities != null && entities.size() > 0) {

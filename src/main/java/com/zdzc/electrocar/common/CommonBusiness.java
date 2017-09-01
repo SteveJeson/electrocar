@@ -65,9 +65,9 @@ public class CommonBusiness {
             }
             br.close();
         } catch (MalformedURLException e) {
-            log.error("=========高德地图API URL解析错误！==========");
+            log.error("=========MalformedURLException 高德地图API URL解析错误！==========");
         } catch (IOException e) {
-            log.error("=========高德地图API URL IO异常！");
+            log.error("=========IOException 高德地图API URL IO异常！");
         }
         //将返回的字符串数据转为JSON对象
         JSONObject jsonObject = JSONObject.parseObject(result);

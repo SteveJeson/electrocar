@@ -10,5 +10,5 @@ public interface GpsNapshotService {
 
      GPSNapshotEntity getLatestGPSInfoListByDeviceId(String deviceId);
 
-     GPSNapshotDto copyGPSEntityToDTO(GPSNapshotEntity entity);
+     GPSNapshotDto copyGPSEntityToDto(GPSNapshotEntity entity);
 }
