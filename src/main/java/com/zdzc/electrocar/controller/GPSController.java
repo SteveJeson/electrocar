@@ -2,14 +2,12 @@ package com.zdzc.electrocar.controller;
 
 import com.zdzc.electrocar.common.Authentication;
 import com.zdzc.electrocar.dto.GPSDto;
-import com.zdzc.electrocar.dto.GPSNapshotDto;
 import com.zdzc.electrocar.entity.GPSEntity;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 import com.zdzc.electrocar.service.GPSService;
 import com.zdzc.electrocar.service.GpsNapshotService;
 import com.zdzc.electrocar.util.JSONResult;
 import com.zdzc.electrocar.util.StatusCode;
-import jdk.net.SocketFlow;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/bsp/api")
-public class MainController {
+public class GPSController {
 
     @Autowired
     private GpsNapshotService gpsNapshotService;
@@ -37,18 +35,17 @@ public class MainController {
     @Autowired
     private Mapper mapper;
 
-    private static Logger log = LoggerFactory.getLogger(MainController.class);
+    private static Logger log = LoggerFactory.getLogger(GPSController.class);
 
     /**
      * 获取设备最新坐标信息
      * @param deviceId
      * @param token
-     * @param request
      * @return
      */
     @RequestMapping(value="/GPSInfo/{deviceId}/{accessToken}")
-    public JSONResult getLatestGPSInfoByDeviceId(@PathVariable("deviceId") String deviceId,@PathVariable("accessToken")String token,
-                                                 HttpServletRequest request) {
+    public JSONResult getLatestGPSInfoByDeviceId(@PathVariable("deviceId") String deviceId,
+                                                 @PathVariable("accessToken")String token) {
         //TODO token校验通过才进行API调用
         if (Authentication.validateToken(token)) {
             GPSNapshotEntity entity =
@@ -74,6 +71,7 @@ public class MainController {
         String deviceId = request.getParameter("deviceId");
         String startTime = request.getParameter("beginTime");
         String endTime = request.getParameter("endTime");
+        log.debug("=============正在获取设备指定时间内坐标信息======={}",endTime);
         if (Authentication.validateToken(token)) {
             List<GPSEntity> entities =  gpsService.getGPSInfoForPeriod(deviceId, startTime, endTime);
             if (entities != null && entities.size() > 0) {

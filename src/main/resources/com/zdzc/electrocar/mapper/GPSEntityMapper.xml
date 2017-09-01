@@ -32,6 +32,19 @@
   <select id="selectGPSInfoForPeriod" parameterType="java.util.HashMap" resultMap="BaseResultMap">
     select *
     from t_gps
-    where device_id = #{params.deviceId} and time &gt;= #{params.beginTime} and time &lt;= #{params.endTime}
+    where device_id = #{params.deviceId}
+    <choose>
+      <when test="params.beginTime != null and params.endTime != null">
+        and time &gt;= #{params.beginTime} and time &lt;= #{params.endTime}
+      </when>
+      <when test="params.beginTime != null and params.endTime == null">
+        and time &gt;= #{params.beginTime}
+      </when>
+      <when test="params.beginTime == null and params.endTime != null">
+        and time &lt;= #{params.endTime}
+      </when>
+    </choose>
+
   </select>
+
 </mapper>

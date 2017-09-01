@@ -1,6 +1,6 @@
 package com.zdzc.electrocar.common;
 
-import tk.mybatis.mapper.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 通用token校验
@@ -8,7 +8,7 @@ import tk.mybatis.mapper.util.StringUtil;
 public class Authentication {
 
     public static boolean validateToken(String token) {
-        if (StringUtil.isNotEmpty(token) && token.equals("ffa1dc92f01b729285136d8edd7f68ea")) {
+        if (StringUtils.isNotEmpty(token) && token.equals("ffa1dc92f01b729285136d8edd7f68ea")) {
             return true;
         }
         return false;

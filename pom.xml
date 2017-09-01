@@ -5,7 +5,7 @@
 
 	<groupId>com.zdzc.bspapi</groupId>
 	<artifactId>bspapi</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>bspapi</name>
@@ -34,7 +34,7 @@
 		<dozer.version>5.5.1</dozer.version>
 
 		<mybatis.generator.generatorConfig.xml>
-			${basedir}/src/main/resources/generatorConfig.xml
+			${basedir}/src/test/generatorConfig.xml
 		</mybatis.generator.generatorConfig.xml>
 		<mybatis.generator.generatorConfig.properties>
 			file:///${basedir}/src/main/resources/application.properties

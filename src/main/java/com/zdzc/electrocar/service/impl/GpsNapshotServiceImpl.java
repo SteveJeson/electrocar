@@ -5,7 +5,6 @@ import com.zdzc.electrocar.dto.GPSNapshotDto;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 import com.zdzc.electrocar.mapper.GPSNapshotEntityMapper;
 import com.zdzc.electrocar.service.GpsNapshotService;
-import com.zdzc.electrocar.util.ByteUtil;
 import com.zdzc.electrocar.util.GPSConvertion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

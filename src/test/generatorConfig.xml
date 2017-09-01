@@ -19,7 +19,7 @@
 
         <!--关闭注释 -->
         <commentGenerator>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
         <!--数据库连接信息 -->
