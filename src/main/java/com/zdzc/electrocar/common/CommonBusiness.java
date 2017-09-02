@@ -24,10 +24,10 @@ public class CommonBusiness {
      * @param alarmStatus
      * @return
      */
-    public static byte getAccStatus(int alarmStatus) {
+    public static int getAccStatus(int alarmStatus) {
         String binStr = ByteUtil.get32BitBinStrFromInt(alarmStatus);
         int accStatus = Integer.valueOf(binStr.substring(0,1));
-        return (byte)accStatus;
+        return accStatus;
     }
 
     /**
@@ -35,9 +35,9 @@ public class CommonBusiness {
      * 此方法为备用方法
      * 当参数alarmStatus为二进制字符串时可调用
      */
-    public static byte getAccStatus(String alarmStatus) {
+    public static int getAccStatus(String alarmStatus) {
         int accStatus = Integer.valueOf(alarmStatus.substring(0,1));
-        return (byte)accStatus;
+        return accStatus;
     }
 
     /**

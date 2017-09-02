@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zdzc.electrocar.mapper.AlarmEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zdzc.electrocar.entity.AlarmEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="alarm_status" property="alarmStatus" jdbcType="INTEGER" />
+    <result column="alarm_handle" property="alarmHandle" jdbcType="INTEGER" />
+    <result column="vehicle_status" property="vehicleStatus" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="speed" property="speed" jdbcType="DOUBLE" />
+    <result column="direction" property="direction" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="milestone" property="milestone" jdbcType="DOUBLE" />
+    <result column="oil" property="oil" jdbcType="DOUBLE" />
+    <result column="speed2" property="speed2" jdbcType="DOUBLE" />
+    <result column="signal_status" property="signalStatus" jdbcType="INTEGER" />
+    <result column="io_status" property="ioStatus" jdbcType="INTEGER" />
+    <result column="analog" property="analog" jdbcType="VARCHAR" />
+    <result column="wiff" property="wiff" jdbcType="INTEGER" />
+    <result column="satellite_num" property="satelliteNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="vendor" property="vendor" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectAlarmsForDevice" resultMap="BaseResultMap">
+    select * from t_gps_alarm
+    where device_id = #{deviceId,jdbcType=VARCHAR} and alarm_handle = #{alarmType,jdbcType=INTEGER}
+  </select>
+</mapper>

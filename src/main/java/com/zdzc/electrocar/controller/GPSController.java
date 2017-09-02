@@ -1,9 +1,12 @@
 package com.zdzc.electrocar.controller;
 
 import com.zdzc.electrocar.common.Authentication;
+import com.zdzc.electrocar.dto.AlarmDto;
 import com.zdzc.electrocar.dto.GPSDto;
+import com.zdzc.electrocar.entity.AlarmEntity;
 import com.zdzc.electrocar.entity.GPSEntity;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
+import com.zdzc.electrocar.service.AlarmService;
 import com.zdzc.electrocar.service.GPSService;
 import com.zdzc.electrocar.service.GpsNapshotService;
 import com.zdzc.electrocar.util.JSONResult;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +37,7 @@ public class GPSController {
     private GPSService gpsService;
 
     @Autowired
-    private Mapper mapper;
+    private AlarmService alarmService;
 
     private static Logger log = LoggerFactory.getLogger(GPSController.class);
 
@@ -82,6 +86,31 @@ public class GPSController {
         } else {
             return new JSONResult(false,StatusCode.ACCESS_DENIED,"访问被拒绝",null);
         }
+
+    }
+
+    /**
+     * 获取设备报警信息
+     * @param deviceId
+     * @param alarmType
+     * @return
+     */
+    @RequestMapping(value="/alarms/{deviceId}/{alarmType}/{token}")
+    public JSONResult getAlarmListForDevice(@PathVariable("deviceId") String deviceId,
+                                            @PathVariable("alarmType") String alarmType,
+                                            @PathVariable("token") String token) {
+        if (Authentication.validateToken(token)) {
+            List<AlarmEntity> entities = alarmService.getAlarmListForDevice(deviceId, alarmType);
+            if (entities != null && entities.size() > 0) {
+                List<AlarmDto> dtos = alarmService.copyAlarmEntityToDto(entities);
+                return new JSONResult(true, StatusCode.OK, "获取信息成功",dtos);
+            } else {
+                return new JSONResult(true, StatusCode.EMPTY, "未获取到相关信息", null);
+            }
+        } else {
+            return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝",null);
+        }
+
 
     }
 

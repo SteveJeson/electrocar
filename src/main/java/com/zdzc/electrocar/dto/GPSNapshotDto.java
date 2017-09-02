@@ -68,7 +68,7 @@ public class GPSNapshotDto implements Serializable{
     /**
      * Acc状态
      */
-    private byte accStatus;
+    private int accStatus;
 
     public String getDeviceId() {
         return deviceId;
@@ -144,11 +144,11 @@ public class GPSNapshotDto implements Serializable{
         this.fortifyStatus = fortifyStatus;
     }
 
-    public byte getAccStatus() {
+    public int getAccStatus() {
         return accStatus;
     }
 
-    public void setAccStatus(byte accStatus) {
+    public void setAccStatus(int accStatus) {
         this.accStatus = accStatus;
     }
 

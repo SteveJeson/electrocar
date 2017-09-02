@@ -33,7 +33,7 @@ public class Application extends WebMvcConfigurerAdapter {
 		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
 		fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");    // 自定义时间格式
 		fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteMapNullValue);
-//		fastJsonConfig.setCharset(Charset.forName("GBK"));
+		fastJsonConfig.setCharset(Charset.forName("GBK"));
 		// 将配置设置给转换器并添加到HttpMessageConverter转换器列表中
 		fastConvert.setFastJsonConfig(fastJsonConfig);
 
@@ -43,7 +43,7 @@ public class Application extends WebMvcConfigurerAdapter {
 	@Bean
 	public HttpMessageConverter<String> responseBodyConverter() {
 		StringHttpMessageConverter converter = new StringHttpMessageConverter(
-				Charset.forName("GBK"));
+				Charset.forName("UTF-8"));
 		return converter;
 	}
 

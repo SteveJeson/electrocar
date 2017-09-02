@@ -19,7 +19,7 @@
 
         <!--关闭注释 -->
         <commentGenerator>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"></property>
             <property name="addRemarkComments" value="true"></property>
         </commentGenerator>
@@ -71,7 +71,7 @@
         <table tableName="t_gps_alarm" domainObjectName="AlarmEntity">
             <property name="useActualColumnNames" value="false"/>
             <!--mysql 配置-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
