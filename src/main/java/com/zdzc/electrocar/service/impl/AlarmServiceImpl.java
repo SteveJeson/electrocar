@@ -40,9 +40,9 @@ public class AlarmServiceImpl implements AlarmService {
                 AlarmEntity entity = entities.get(i);
                 AlarmDto dto = new AlarmDto();
                 dto.setDeviceId(entity.getDeviceId());
-                //TODO 报警状态解析  车辆状态解析
-                dto.setAlarmStatus(0);
-                dto.setVehicleStatus(0);
+                //TODO 报警状态解析  车辆状态解析,暂时默认设置为原值
+                dto.setAlarmStatus(entity.getAlarmStatus());
+                dto.setVehicleStatus(entity.getVehicleStatus());
 
                 dto.setHeight(entity.getHeight());
                 dto.setLongitude(entity.getLongitude());

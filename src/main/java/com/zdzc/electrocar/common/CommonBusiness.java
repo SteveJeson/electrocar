@@ -77,4 +77,7 @@ public class CommonBusiness {
         gps[1] = Double.valueOf(strArr[1]);
         return gps;
     }
+    
+
+
 }

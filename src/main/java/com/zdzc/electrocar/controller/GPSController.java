@@ -4,24 +4,26 @@ import com.zdzc.electrocar.common.Authentication;
 import com.zdzc.electrocar.dto.AlarmDto;
 import com.zdzc.electrocar.dto.GPSDto;
 import com.zdzc.electrocar.entity.AlarmEntity;
+import com.zdzc.electrocar.entity.CommandEntity;
 import com.zdzc.electrocar.entity.GPSEntity;
 import com.zdzc.electrocar.entity.GPSNapshotEntity;
 import com.zdzc.electrocar.service.AlarmService;
 import com.zdzc.electrocar.service.GPSService;
 import com.zdzc.electrocar.service.GpsNapshotService;
+import com.zdzc.electrocar.util.Command;
 import com.zdzc.electrocar.util.JSONResult;
 import com.zdzc.electrocar.util.StatusCode;
+import com.zdzc.electrocar.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Created by liuw on 2017/8/29.
@@ -111,7 +113,38 @@ public class GPSController {
             return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝",null);
         }
 
+    }
 
+    @RequestMapping(value = "/command/{token}",method = RequestMethod.POST)
+    public JSONResult sendCommands(CommandEntity entity,@PathVariable("token") String token,HttpServletRequest request) {
+        if (!Authentication.validateToken(token)) {
+            return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝");
+        }
+        //TODO 具体业务逻辑待定
+//        String deviceId = entity.getDeviceId();
+        String commandType = entity.getCommand();//指令类型
+        String parameter = entity.getParameter();//指令参数值
+        String extendParam = entity.getExtendParam();//扩展参数
+        String message;
+        try{
+            message = Command.valueOf(commandType).getCommand();
+        } catch (Exception e) {
+            message = "不识别的指令类型";
+            return new JSONResult(true,0,message);
+        }
+
+
+        //TODO 指令发送失败的逻辑
+        if (StringUtils.equals(commandType, "C1")) {
+            if (StringUtils.equals(parameter, "1")) {
+                if (StringUtils.isEmpty(extendParam) ||
+                        (!StringUtil.isInDecScope(extendParam, "10%","100%"))) {
+                    message = "限速比例未设置或超出可设置范围";
+                    return new JSONResult(true,0,message);
+                }
+            }
+        }
+        return new JSONResult(true,StatusCode.OK,"指令发送成功");
     }
 
 }

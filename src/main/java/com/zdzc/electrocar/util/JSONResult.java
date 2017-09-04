@@ -38,6 +38,12 @@ public class JSONResult<T> extends Result implements Serializable{
         this.data = data;
     }
 
+    public JSONResult(boolean success, int statusCode, String message) {
+        super.setSuccess(success);
+        super.setStatusCode(statusCode);
+        super.setMessage(message);
+    }
+
     /**
      * 成功返回数据和消息
      * @param data
