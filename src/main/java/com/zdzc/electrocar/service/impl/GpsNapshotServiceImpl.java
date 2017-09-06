@@ -60,7 +60,7 @@ public class GpsNapshotServiceImpl implements GpsNapshotService {
             dto.setTime(entity.getTime());//采集时间
             dto.setSpeed(entity.getSpeed());//速度
             dto.setOnline("1");//在线状态，默认为1
-            dto.setMilestone(entity.getMilestone());
+            dto.setMile(entity.getMile());
             //TODO 设防状态先默认设为1 1:设防 0:撤防
             dto.setFortifyStatus((byte)1);
             dto.setAccStatus(CommonBusiness.getAccStatus(entity.getAlarmStatus()));

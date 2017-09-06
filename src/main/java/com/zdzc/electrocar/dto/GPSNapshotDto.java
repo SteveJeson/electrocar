@@ -51,7 +51,7 @@ public class GPSNapshotDto implements Serializable{
     /**
      * 里程
      */
-    private Double milestone;
+    private Double mile;
 
     /**
      * 电量
@@ -110,14 +110,12 @@ public class GPSNapshotDto implements Serializable{
         this.speed = speed;
     }
 
-
-
-    public Double getMilestone() {
-        return milestone;
+    public Double getMile() {
+        return mile;
     }
 
-    public void setMilestone(Double milestone) {
-        this.milestone = milestone;
+    public void setMile(Double mile) {
+        this.mile = mile;
     }
 
     public double getPower() {

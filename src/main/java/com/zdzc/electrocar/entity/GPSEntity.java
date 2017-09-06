@@ -3,104 +3,64 @@ package com.zdzc.electrocar.entity;
 import java.util.Date;
 
 public class GPSEntity {
-    /**
-     * ID
-     */
+    /** 消息ID */
     private Long id;
 
-    /**
-     * 终端设备号
-     */
+    /** 终端设备号 */
     private String deviceId;
 
-    /**
-     * 报警标志 4位
-     */
+    /** 报警标志 4位 */
     private Integer alarmStatus;
 
-    /**
-     * 状态 4位
-     */
+    /** 状态 4位 */
     private Integer vehicleStatus;
 
-    /**
-     * 经度 单位：度
-     */
+    /** 经度 单位：度 */
     private Double longitude;
 
-    /**
-     *纬度 单位：度
-     */
+    /** 纬度 单位：度 */
     private Double latitude;
 
-    /**
-     * 海拔高度 米(m)
-     */
+    /** 海拔高度，米(m) */
     private Double height;
 
-    /**
-     * 速度 km/h
-     */
+    /** 速度km/h */
     private Double speed;
 
-    /**
-     * 方向 0-359，正北为 0，顺时针
-     */
+    /** 方向 0-359，正北为 0，顺时针 */
     private Double direction;
 
-    /**
-     * GPS时间 (GMT+8 时间)
-     */
+    /** GPS时间  (GMT+8 时间) */
     private Date time;
 
-    /**
-     * 里程 km
-     */
-    private Double milestone;
+    /** 里程 km */
+    private Double mile;
 
-    /**
-     * 油量 L
-     */
+    /** 油量 L */
     private Double oil;
 
-    /**
-     * 记录仪速度 km/h
-     */
+    /** 记录仪速度 km/h */
     private Double speed2;
 
-    /**
-     * 扩展车辆信号状态位
-     */
+    /** 扩展车辆信号状态位 */
     private Integer signalStatus;
 
-    /**
-     * IO状态
-     */
+    /** IO状态位 */
     private Integer ioStatus;
 
-    /**
-     * 模拟量
-     */
+    /** 模拟量 */
     private String analog;
 
-    /**
-     * 无线通信网络信号强度
-     */
-    private Integer wiff;
+    /** 无线通信网络信号强度 */
+    private Integer wifi;
 
-    /**
-     * 定位卫星数
-     */
+    /** 定位卫星数 */
     private Integer satelliteNum;
 
-    /**
-     * 写库时间
-     */
+    /** 写库时间 */
     private Date createTime;
 
-    /**
-     * 标识（1：迈的）
-     */
+    /** 标识（1：迈的） */
     private Integer vendor;
 
     public Long getId() {
@@ -183,12 +143,12 @@ public class GPSEntity {
         this.time = time;
     }
 
-    public Double getMilestone() {
-        return milestone;
+    public Double getMile() {
+        return mile;
     }
 
-    public void setMilestone(Double milestone) {
-        this.milestone = milestone;
+    public void setMile(Double mile) {
+        this.mile = mile;
     }
 
     public Double getOil() {
@@ -231,12 +191,12 @@ public class GPSEntity {
         this.analog = analog == null ? null : analog.trim();
     }
 
-    public Integer getWiff() {
-        return wiff;
+    public Integer getWifi() {
+        return wifi;
     }
 
-    public void setWiff(Integer wiff) {
-        this.wiff = wiff;
+    public void setWifi(Integer wifi) {
+        this.wifi = wifi;
     }
 
     public Integer getSatelliteNum() {

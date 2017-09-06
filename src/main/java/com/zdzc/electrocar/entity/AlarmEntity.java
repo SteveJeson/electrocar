@@ -3,67 +3,67 @@ package com.zdzc.electrocar.entity;
 import java.util.Date;
 
 public class AlarmEntity {
-    /** ÏûÏ¢ID */
+    /** æ¶ˆæ¯ID */
     private Long id;
 
-    /** ÖÕ¶ËÉè±¸ºÅ */
+    /** ç»ˆç«¯è®¾å¤‡å· */
     private String deviceId;
 
-    /** ±¨¾¯±êÖ¾ 4Î» */
+    /** æŠ¥è­¦æ ‡å¿— 4ä½ */
     private Integer alarmStatus;
 
-    /** ±¨¾¯ÊÇ·ñ´¦Àí£¨0£º·ñ£»1£ºÊÇ£© */
+    /** æŠ¥è­¦æ˜¯å¦å¤„ç†ï¼ˆ0ï¼šå¦ï¼›1ï¼šæ˜¯ï¼‰ */
     private Integer alarmHandle;
 
-    /** ×´Ì¬ 4Î» */
+    /** çŠ¶æ€ 4ä½ */
     private Integer vehicleStatus;
 
-    /** ¾­¶È µ¥Î»£º¶È */
+    /** ç»åº¦ å•ä½ï¼šåº¦ */
     private Double longitude;
 
-    /** Î³¶È µ¥Î»£º¶È */
+    /** çº¬åº¦ å•ä½ï¼šåº¦ */
     private Double latitude;
 
-    /** º£°Î¸ß¶È£¬Ã×(m) */
+    /** æµ·æ‹”é«˜åº¦ï¼Œç±³(m) */
     private Double height;
 
-    /** ËÙ¶Èkm/h */
+    /** é€Ÿåº¦km/h */
     private Double speed;
 
-    /** ·½Ïò 0-359£¬Õı±±Îª 0£¬Ë³Ê±Õë */
+    /** æ–¹å‘ 0-359ï¼Œæ­£åŒ—ä¸º 0ï¼Œé¡ºæ—¶é’ˆ */
     private Double direction;
 
-    /** GPSÊ±¼ä  (GMT+8 Ê±¼ä) */
+    /** GPSæ—¶é—´  (GMT+8 æ—¶é—´) */
     private Date time;
 
-    /** Àï³Ì km */
-    private Double milestone;
+    /** é‡Œç¨‹ km */
+    private Double mile;
 
-    /** ÓÍÁ¿ L */
+    /** æ²¹é‡ L */
     private Double oil;
 
-    /** ¼ÇÂ¼ÒÇËÙ¶È km/h */
+    /** è®°å½•ä»ªé€Ÿåº¦ km/h */
     private Double speed2;
 
-    /** À©Õ¹³µÁ¾ĞÅºÅ×´Ì¬Î» */
+    /** æ‰©å±•è½¦è¾†ä¿¡å·çŠ¶æ€ä½ */
     private Integer signalStatus;
 
-    /** IO×´Ì¬Î» */
+    /** IOçŠ¶æ€ä½ */
     private Integer ioStatus;
 
-    /** Ä£ÄâÁ¿ */
+    /** æ¨¡æ‹Ÿé‡ */
     private String analog;
 
-    /** ÎŞÏßÍ¨ĞÅÍøÂçĞÅºÅÇ¿¶È */
-    private Integer wiff;
+    /** æ— çº¿é€šä¿¡ç½‘ç»œä¿¡å·å¼ºåº¦ */
+    private Integer wifi;
 
-    /** ¶¨Î»ÎÀĞÇÊı */
+    /** å®šä½å«æ˜Ÿæ•° */
     private Integer satelliteNum;
 
-    /** Ğ´¿âÊ±¼ä */
+    /** å†™åº“æ—¶é—´ */
     private Date createTime;
 
-    /** ±êÊ¶£¨1£ºÂõµÄ£© */
+    /** æ ‡è¯†ï¼ˆ1ï¼šè¿ˆçš„ï¼‰ */
     private Integer vendor;
 
     public Long getId() {
@@ -154,12 +154,12 @@ public class AlarmEntity {
         this.time = time;
     }
 
-    public Double getMilestone() {
-        return milestone;
+    public Double getMile() {
+        return mile;
     }
 
-    public void setMilestone(Double milestone) {
-        this.milestone = milestone;
+    public void setMile(Double mile) {
+        this.mile = mile;
     }
 
     public Double getOil() {
@@ -202,12 +202,12 @@ public class AlarmEntity {
         this.analog = analog == null ? null : analog.trim();
     }
 
-    public Integer getWiff() {
-        return wiff;
+    public Integer getWifi() {
+        return wifi;
     }
 
-    public void setWiff(Integer wiff) {
-        this.wiff = wiff;
+    public void setWifi(Integer wifi) {
+        this.wifi = wifi;
     }
 
     public Integer getSatelliteNum() {

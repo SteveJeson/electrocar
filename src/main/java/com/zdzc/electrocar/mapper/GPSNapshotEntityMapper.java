@@ -5,7 +5,10 @@ import java.util.List;
 
 public interface GPSNapshotEntityMapper {
 
-    GPSNapshotEntity selectLatestGPSInfoByDeviceId(String deviceId);
-
+    /**
+     * 获取设备坐标轨迹
+     * @param deviceId
+     * @return
+     */
     List<GPSNapshotEntity> selectLatestGPSListByDeviceId(String deviceId);
 }
