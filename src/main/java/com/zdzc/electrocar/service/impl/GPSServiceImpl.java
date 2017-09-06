@@ -44,17 +44,27 @@ public class GPSServiceImpl implements GPSService {
                 GPSEntity entity = entities.get(i);
                 GPSDto dto = new GPSDto();
                 dto.setDeviceId(entity.getDeviceId());
+
                 dto.setLng(entity.getLongitude());
                 dto.setLat(entity.getLatitude());
                 //转换成高德经纬度
-                double lng = entity.getLongitude();
-                double lat = entity.getLatitude();
-                double[] gps = CommonBusiness.getGaodeGPS(lng,lat);
-                dto.setOlng(lng!=0?gps[0]:lng);
-                dto.setOlat(lat!=0?gps[1]:lat);
+                double[] gps = null;
+                if (entity.getLongitude() != null && entity.getLatitude() != null) {
+                   gps = CommonBusiness.getGaodeGPS(entity.getLongitude(),entity.getLatitude());
+                   dto.setOlng(gps[0]);
+                   dto.setOlat(gps[1]);
+                } else {
+                    dto.setOlng(entity.getLongitude());
+                    dto.setOlat(entity.getLatitude());
+                }
+
                 dto.setTime(entity.getTime());
                 dto.setSpeed(entity.getSpeed());
-                dto.setAccStatus(CommonBusiness.getAccStatus(entity.getAlarmStatus()));
+                if (entity.getAlarmStatus() != null) {
+                    dto.setAccStatus(CommonBusiness.getAccStatus(entity.getAlarmStatus()));
+                } else {
+                    dto.setAccStatus(entity.getAlarmStatus());
+                }
                 dtos.add(dto);
             }
             return dtos;

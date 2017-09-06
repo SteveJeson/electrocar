@@ -92,7 +92,7 @@ public class GPSController {
     }
 
     /**
-     * 获取设备报警信息
+     * 获取单个设备报警信息
      * @param deviceId
      * @param alarmType
      * @return
@@ -113,6 +113,18 @@ public class GPSController {
             return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝",null);
         }
 
+    }
+
+    /**
+     * 获取多个设备报警信息
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/devices/alarms",method = RequestMethod.POST)
+    public JSONResult getAlarmsForAllDevice(HttpServletRequest request) {
+        String deviceIds = request.getParameter("deviceIds");
+        String alarmType = request.getParameter("alarmType");
+        return new JSONResult();
     }
 
     @RequestMapping(value = "/command/{token}",method = RequestMethod.POST)
