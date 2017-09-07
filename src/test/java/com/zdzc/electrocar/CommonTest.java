@@ -27,4 +27,15 @@ public class CommonTest {
         System.out.println(dataB);
         System.out.println(dataA.compareTo(dataB));//大于为1，相同为0，小于为-1
     }
+
+    @Test
+    public void testDemo() {
+        int i = 8;
+        setNum(i);
+        System.out.println(i);
+    }
+
+    public void setNum(int j) {
+        j = 19;
+    }
 }
