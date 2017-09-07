@@ -1,7 +1,9 @@
 package com.zdzc.electrocar.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zdzc.electrocar.common.Authentication;
 import com.zdzc.electrocar.dto.AlarmDto;
+import com.zdzc.electrocar.dto.DeviceAlarmDto;
 import com.zdzc.electrocar.dto.GPSDto;
 import com.zdzc.electrocar.entity.AlarmEntity;
 import com.zdzc.electrocar.entity.CommandEntity;
@@ -15,6 +17,7 @@ import com.zdzc.electrocar.util.JSONResult;
 import com.zdzc.electrocar.util.StatusCode;
 import com.zdzc.electrocar.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -59,10 +64,10 @@ public class GPSController {
             if (entity != null) {
                 return new JSONResult(true,StatusCode.OK,"获取信息成功",gpsNapshotService.copyGPSEntityToDto(entity));
             } else {
-                return new JSONResult(true,StatusCode.EMPTY,"未获取到相关信息",null);
+                return new JSONResult(true,StatusCode.FAILURE,"未获取到相关信息",null);
             }
         } else{
-            return new JSONResult(false,StatusCode.ACCESS_DENIED,"访问被拒绝",null);
+            return new JSONResult(false,StatusCode.FAILURE,"访问被拒绝",null);
         }
     }
 
@@ -83,10 +88,10 @@ public class GPSController {
                 List<GPSDto> dtos = gpsService.copyGPSEntityToDto(entities);
                 return new JSONResult(true,StatusCode.OK,"获取信息成功",dtos);
             } else {
-                return new JSONResult(true,StatusCode.EMPTY,"未获取到相关信息",null);
+                return new JSONResult(true,StatusCode.FAILURE,"未获取到相关信息",null);
             }
         } else {
-            return new JSONResult(false,StatusCode.ACCESS_DENIED,"访问被拒绝",null);
+            return new JSONResult(false,StatusCode.FAILURE,"访问被拒绝",null);
         }
 
     }
@@ -107,12 +112,27 @@ public class GPSController {
                 List<AlarmDto> dtos = alarmService.copyAlarmEntityToDto(entities);
                 return new JSONResult(true, StatusCode.OK, "获取信息成功",dtos);
             } else {
-                return new JSONResult(true, StatusCode.EMPTY, "未获取到相关信息", null);
+                return new JSONResult(true, StatusCode.FAILURE, "未获取到相关信息", null);
             }
         } else {
-            return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝",null);
+            return new JSONResult(false, StatusCode.FAILURE,"访问被拒绝",null);
         }
 
+    }
+
+    /**
+     * 更新报警标识信息
+     * @param alarmIds  报警消息主键id，多个以逗号分开
+     * @param alarmType 报警标识即报警类型
+     * @return
+     */
+    @PostMapping(value = "/alarms/update")
+    public JSONResult updateAlarmType(@Param("alarmIds") String alarmIds,@Param("alarmType") String alarmType) {
+        if (StringUtils.isEmpty(alarmIds)) {
+            return new JSONResult(true,StatusCode.FAILURE,"缺少必要参数");
+        }
+        this.alarmService.updateAlarmType(alarmIds, alarmType);
+        return new JSONResult(true, StatusCode.OK, "更新报警信息成功");
     }
 
     /**
@@ -120,17 +140,27 @@ public class GPSController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/devices/alarms",method = RequestMethod.POST)
+    @PostMapping(value = "/devices/alarms")
     public JSONResult getAlarmsForAllDevice(HttpServletRequest request) {
         String deviceIds = request.getParameter("deviceIds");
         String alarmType = request.getParameter("alarmType");
-        return new JSONResult();
+        if (StringUtils.isEmpty(alarmType)) {
+            alarmType = "0";
+        }
+        Map<String, List<DeviceAlarmDto>> resultMap = null;
+        if (StringUtils.isNotEmpty(deviceIds)) {
+            resultMap = alarmService.getAlarmsForDevices(deviceIds, alarmType);
+        } else {
+            //设备号为空则查询所有
+            resultMap = alarmService.getAlarmsForDevices(alarmType);
+        }
+        return new JSONResult(true, StatusCode.OK,"获取设备报警信息成功", resultMap.entrySet().toArray());
     }
 
     @RequestMapping(value = "/command/{token}",method = RequestMethod.POST)
     public JSONResult sendCommands(CommandEntity entity,@PathVariable("token") String token,HttpServletRequest request) {
         if (!Authentication.validateToken(token)) {
-            return new JSONResult(false, StatusCode.ACCESS_DENIED,"访问被拒绝");
+            return new JSONResult(false, StatusCode.FAILURE,"访问被拒绝");
         }
         //TODO 具体业务逻辑待定
 //        String deviceId = entity.getDeviceId();

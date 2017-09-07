@@ -15,4 +15,10 @@ public interface AlarmEntityMapper {
      */
     List<AlarmEntity> selectAlarmsForDevice(@Param("deviceId") String deviceId, @Param("alarmType") int alarmType);
 
+    void updateAlarmType(@Param("id") Long id, @Param("alarmType") Integer alarmType);
+
+    List<AlarmEntity> selectAlarmsForDevices(@Param("alarmType") int alarmType);
+
+
+
 }

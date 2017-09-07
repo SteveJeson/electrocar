@@ -25,8 +25,22 @@
     <result column="vendor" jdbcType="INTEGER" property="vendor" />
   </resultMap>
 
+  <update id="updateAlarmType">
+   UPDATE t_gps_alarm SET alarm_handle = #{alarmType,jdbcType=INTEGER}
+   WHERE id = #{id,jdbcType=BIGINT}
+  </update>
+
   <select id="selectAlarmsForDevice" resultMap="BaseResultMap">
     select * from t_gps_alarm
-    where device_id = #{deviceId,jdbcType=VARCHAR} and alarm_handle = #{alarmType,jdbcType=INTEGER}
+    where
+    <if test="deviceId != null">
+      device_id = #{deviceId,jdbcType=VARCHAR} and alarm_handle = #{alarmType,jdbcType=INTEGER}
+    </if>
+    <if test="deviceId == null">
+      alarm_handle = #{alarmType,jdbcType=INTEGER}
+    </if>
+
+
   </select>
+
 </mapper>
